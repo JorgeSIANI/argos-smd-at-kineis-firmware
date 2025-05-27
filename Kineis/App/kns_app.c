@@ -57,7 +57,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-#ifdef USE_MAC_PRFL_BLIND
+//#ifdef USE_MAC_PRFL_BLIND
 /**
  * @attention Configuration below shall be discussed with Kineis according to the SAT constellation
  * deployment
@@ -69,7 +69,7 @@ struct KNS_MAC_BLIND_usrCfg_t prflBlindUserCfg = {
 				 */
 	.nb_parrallel_msg = 1	/** User-Message FIFO size @attention do not exceed 4*/
 };
-#endif
+//#endif
 
 /* Private functions ----------------------------------------------------------*/
 

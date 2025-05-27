@@ -28,19 +28,19 @@ DEBUG = 1
 VERBOSE = 1
 USE_BAREMETAL = 1
 
+
 # Select APPlication. Can be:
 # * STDLN: for the standalone application sending one message at startup
 # * GUI: for the application using the AT commands from UART link
 APP = GUI
 
 # Select output port
-COMM = SPI
-
+COMM = UART
 
 # Select Kineis stack MAC profile. Can be:
 # * BASIC: basic profile, sending message once immediately 
 # * BLIND: blind profile, sending message sevral times periodically 
-MAC_PRFL = BLIND
+MAC_PRFL = BASIC
 
 # LPM: depest low power mode supported can be:
 # NONE, SLEEP, STOP, STANDBY, SHUTDOWN
