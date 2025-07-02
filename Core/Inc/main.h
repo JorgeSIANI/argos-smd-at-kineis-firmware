@@ -61,7 +61,7 @@ void SystemClock_Config(void);
 #define JTMS_SWCLK_GPIO_Port GPIOA
 #define JTMS_SWDIO_Pin GPIO_PIN_13
 #define JTMS_SWDIO_GPIO_Port GPIOA
-#define EXT_WKUP_BUTTON_Pin GPIO_PIN_13
+#define EXT_WKUP_BUTTON_Pin GPIO_PIN_3
 #define EXT_WKUP_BUTTON_GPIO_Port GPIOB
 #define PA_PSU_EN_Pin GPIO_PIN_0
 #define PA_PSU_EN_GPIO_Port GPIOC

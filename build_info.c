@@ -1,3 +1,3 @@
 #include "build_info.h"
 
-const char uc_fw_vers_commit_id[] = "51c56b5*_DVTx_gui_basic_Mp,v10.0.0_c707759_0x6Tx,v9.5.2_c707759_Tx,May 27 2025_14:06:07";
+const char uc_fw_vers_commit_id[] = "e3c2c28_DVTxStdb_gui_basic_Mp,v10.0.0_c707759_0x6Tx,v9.5.2_c707759_Tx,Jul 01 2025_16:25:53";

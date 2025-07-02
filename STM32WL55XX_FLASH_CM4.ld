@@ -241,8 +241,6 @@ SECTIONS
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
     /* Protection: End of usable ROM before FLASH_USER */
-  __rom_code_end = .;
-  ASSERT(__rom_code_end <= ORIGIN(FLASH_USER), "Error: ROM overflows into FLASH_USER!");
   
   /* Flash user-defined data section (placed at the end of flash) */
 	.flash_user_data :

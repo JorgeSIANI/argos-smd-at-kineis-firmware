@@ -78,7 +78,7 @@ bool bMGR_SPI_CMD_MACSTATUS_cmd(SPI_Buffer *rx, SPI_Buffer *tx)
 	if (ret == HAL_OK)
 	{
 		// reset Mac status after read if
-		macStatus = MAC_OK;
+		//macStatus = MAC_OK;
 		return true;
 	} else {
 		return false;

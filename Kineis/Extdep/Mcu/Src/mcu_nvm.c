@@ -40,6 +40,7 @@
  * If you use a flash memory, be careful about the storage of this data. The message counter is
  * updated at each message transmission, so this implies a lot of erase/write cycles.
  */
+__attribute__((__section__(".msgCntSectionData")))
 static uint16_t message_counter = 0;
 
 static uint16_t wakeup_counter = 0;
@@ -101,28 +102,44 @@ static uint8_t radioConfZone[16] = {
 };
 
 /* Device serial number */
-static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '1', '0', '_', \
-					      '_', 'T', 'E', 'S', 'T', '0', '2' };
+static const uint8_t device_sn[DEVICE_SN_LENGTH] = { 'S', 'M', 'D', '_', '1', '1', '_', \
+					      '_', '0', '0', '0', '0', '0', '1' };
 /* Functions -------------------------------------------------------------*/
 
+//enum KNS_status_t MCU_NVM_getMC(uint16_t *mc_ptr)
+//{
+//	if (!mc_ptr)
+//		return KNS_STATUS_ERROR;
+//
+//	uint64_t full_counter = MCU_FLASH_read_msg_counter();
+//    *mc_ptr = (uint16_t)(full_counter & 0xFFFF);
+//    message_counter = *mc_ptr;
+//    return KNS_STATUS_OK;
+//
+//}
+//
+//enum KNS_status_t MCU_NVM_setMC(uint16_t mcTmp)
+//{
+//	message_counter = mcTmp;
+//
+//	return MCU_FLASH_set_msg_counter((uint64_t)mcTmp);
+//
+//}
 enum KNS_status_t MCU_NVM_getMC(uint16_t *mc_ptr)
 {
-	if (!mc_ptr) 
-		return KNS_STATUS_ERROR;
-  
-	uint64_t full_counter = MCU_FLASH_read_msg_counter();
-    *mc_ptr = (uint16_t)(full_counter & 0xFFFF);
-    return KNS_STATUS_OK;
+	*mc_ptr = message_counter;
 
+	return KNS_STATUS_OK;
 }
 
 enum KNS_status_t MCU_NVM_setMC(uint16_t mcTmp)
 {
 	message_counter = mcTmp;
 
-	return MCU_FLASH_set_msg_counter((uint64_t)mcTmp);
+	return KNS_STATUS_OK;
 
 }
+
 
 enum KNS_status_t MCU_NVM_getWUC(uint16_t *wuc_ptr)
 {
