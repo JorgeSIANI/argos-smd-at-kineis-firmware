@@ -279,6 +279,9 @@ static void LPM_standby_enter() {
 	/** Force pull down on wakeup pin: PB3, or PC13 or PA0 */
 	HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, PWR_GPIO_BIT_3);
 
+	// 2) Program the desired pulls for Standby via PWR (per port/bit)
+	HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_C, PA_PSU_EN_Pin);      // example: PA0 pull-up
+	HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_C, PA_PSU_SEL_Pin);      // example: PB3 pull-down
 #if defined(STM32WL55xx)
 	HAL_PWREx_EnableSRAMRetention();
 #else
@@ -313,6 +316,9 @@ static void LPM_shutdown_enter() {
 	/** Force pull down on wakeup pin: PB3, or PC13 or PA0 */
 	HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_B, PWR_GPIO_BIT_3);
 
+	// 2) Program the desired pulls for Standby via PWR (per port/bit)
+	HAL_PWREx_EnableGPIOPullDown(PWR_GPIO_C, PA_PSU_EN_Pin);      // example: PA0 pull-up
+	HAL_PWREx_EnableGPIOPullUp(PWR_GPIO_C, PA_PSU_SEL_Pin);      // example: PB3 pull-down
 	LPM_configWakeUpRtc();
 	LPM_configWakeUpPins();
 	__HAL_RCC_CLEAR_RESET_FLAGS();
@@ -365,11 +371,23 @@ void GPIO_DisableAllToAnalogInput(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = PA_PSU_EN_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	//Already defined in MX_GPIO_INIT
+	/*Configure GPIO pin : PtPin */
+	GPIO_InitStruct.Pin = PA_PSU_EN_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(PA_PSU_EN_GPIO_Port, &GPIO_InitStruct);
+
+
+	GPIO_InitStruct.Pin = PA_PSU_SEL_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(PA_PSU_SEL_GPIO_Port, &GPIO_InitStruct);
+
+	HAL_GPIO_WritePin(PA_PSU_SEL_GPIO_Port, PA_PSU_SEL_Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(PA_PSU_EN_GPIO_Port, PA_PSU_EN_Pin, GPIO_PIN_RESET);
 
   /* Disable GPIOs clock */
   __HAL_RCC_GPIOA_CLK_DISABLE();
