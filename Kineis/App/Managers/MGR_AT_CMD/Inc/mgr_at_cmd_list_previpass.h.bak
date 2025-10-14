@@ -2,7 +2,7 @@
 /**
  * @file mgr_at_cmd_list_previpass.h
  * @author  Kinéis
- * @brief subset of AT commands concerning satellite PASS predictions, useful for Medium Access
+ * @brief subset of AT commands concerning satellite PASS predictions, usefull for Medium Acces
  *
  * @note This subset of commands are actually stubs, only present because GUI is sending such AT
  *       commands to KIM device.
@@ -26,7 +26,7 @@
 /** @brief Process AT command "AT+PREPASS_EN" Enabling/disabling PREVIPASS (sat pass prediction)
  * computation, leading to TX/RX only during satellite pass.
  *
- * @note This command is actually a stub, used to answer correctly to GUI. There is no functional
+ * @note This command is actually a stub, used to anwser correctly to GUI. There is no functionnal
  *       impact on Kinéis SW stack so far.
  *
  * 1) "AT+PREPASS_EN=<enable_disable>" 0 disable PREPAS, 1 enable PREPAS

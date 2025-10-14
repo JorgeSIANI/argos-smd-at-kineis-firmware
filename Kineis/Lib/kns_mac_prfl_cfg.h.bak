@@ -56,7 +56,7 @@ enum KNS_MAC_prflId_t {
 
 /**
  * @struct KNS_MAC_send_data_ctxt_t
- * @brief Event context structure containing useful information for the APPlication to send data
+ * @brief Event context structure containing usefull information for the APPlication to send data
  * to Kineis
  *
  * @attention Need to pack the struct to ensure memory mapping whatever the uC/compiler used to
@@ -70,7 +70,7 @@ struct __attribute__((packed)) KNS_MAC_BLIND_usrCfg_t {
 
 /**
  * @struct KNS_MAC_send_data_ctxt_t
- * @brief Event context structure containing useful information for the APPlication to send data
+ * @brief Event context structure containing usefull information for the APPlication to send data
  * to Kineis
  *
  * @attention Need to pack the struct to ensure memory mapping whatever the uC/compiler used to

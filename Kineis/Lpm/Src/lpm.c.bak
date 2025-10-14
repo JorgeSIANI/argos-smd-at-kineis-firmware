@@ -246,10 +246,10 @@ static void LPM_sleep_exit() {
 static void LPM_stop_enter() {
 //	MGR_LOG_DEBUG("==== STOP enter ====\r\n");
 	GPIO_DisableAllToAnalogInput();
-	/** Configure and re-enable interrupt as wakeup from UART is needed in case of GUI APP.
+	/** Configure and renable interrupt as wakeup from UART is needed in case of GUI APP.
 	 *
 	 * @attention, This should not be done in case of standalone APP, as long as UART reception
-	 * is not fully configured (need to call UART_Start_Receive_IT or KINEIS_UART_StartRx_IT
+	 * is not is fully configured (need to call UART_Start_Receive_IT or KINEIS_UART_StartRx_IT
 	 * at init)
 	 *
 	 * */
@@ -307,7 +307,7 @@ static void LPM_standby_enter() {
 }
 
 #ifdef LPM_SHUTDOWN_ENABLED
-/** @brief System callback invoked by MGR_LPM at SHUTDOWN mode entering */
+/** @brief System callback invoked by MGR_LPM at STANDBY mode entering */
 static void LPM_shutdown_enter() {
 	MGR_LOG_DEBUG("==== SHUTDOWN enter ====\r\n");
 

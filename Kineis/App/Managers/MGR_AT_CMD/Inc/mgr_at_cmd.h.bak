@@ -77,7 +77,7 @@ bool MGR_AT_CMD_isPendingAt(void);
 uint8_t *MGR_AT_CMD_popNextAt(void);
 
 /**
- * @brief Decode and execute AT cmd if valid
+ * @brief Decode and exectue AT cmd if valid
  *
  * @param[in] pu8_atcmd pointer to AT command
  *
@@ -86,7 +86,7 @@ uint8_t *MGR_AT_CMD_popNextAt(void);
 bool MGR_AT_CMD_decodeAt(uint8_t *pu8_atcmd);
 
 /**
- * @brief Fct used to retrieve and process event coming from kineis stack as answers to AT commands
+ * @brief Fct used to retreive and process event coming from kineis stack as answers to AT commands
  *
  * Typically, this is about processing TX events such as TX-done, TX-timeout, RX-timeout in case of
  * TRX. In case of KIM2 HW, it is also about RX events such as RX-frame-received, DL-msg-received.

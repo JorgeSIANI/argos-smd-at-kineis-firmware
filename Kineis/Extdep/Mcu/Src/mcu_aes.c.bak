@@ -36,7 +36,7 @@ static aes_context ctx;
  *
  * It is up to the integrator to store it as per its own security strategy.
  *
- * @attention Credentials are delivered by Kineis after certification of your device.
+ * @attention Credentials are delivered by Kineis after certificication of your device.
  *
  * @attention Once credentials are delivered by Kineis, it becomes your responsability.
  */
