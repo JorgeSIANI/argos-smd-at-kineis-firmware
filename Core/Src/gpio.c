@@ -148,6 +148,11 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(PA_PSU_SEL_GPIO_Port, &GPIO_InitStruct);
   HAL_GPIO_WritePin(PA_PSU_SEL_GPIO_Port, PA_PSU_SEL_Pin, GPIO_PIN_SET);
 
+  /* Configure PA9 and PA10 as analog (Hi-Z when off) */
+  GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
   /*Configure GPIO pin : PH3 */
   GPIO_InitStruct.Pin = GPIO_PIN_3;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;

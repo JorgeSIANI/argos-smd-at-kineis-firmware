@@ -29,7 +29,7 @@
 #include <stdint.h>
 #include "kns_types.h"
 
-#define MCU_PA_BOOTDELAY_MS 100 
+#define MCU_PA_BOOTDELAY_MS 100
 /* Structures ----------------------------------------------------------------------------------- */
 
 /** @attention Structure below is platform specific, it may not fit your needs

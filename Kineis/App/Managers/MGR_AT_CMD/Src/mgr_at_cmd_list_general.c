@@ -144,7 +144,7 @@ bool bMGR_AT_CMD_ADDR_cmd(uint8_t *pu8_cmdParamString __attribute__((unused)),
 			nbBits = u16MGR_AT_CMD_convertAsciiBinary(pu8_cmdParamString + 8,
 				strlen((char*)(pu8_cmdParamString + 8)));
 			
-			if (nbBits != 32)
+			if ((nbBits != 32) && (nbBits != 28))
 			{
 				MGR_LOG_DEBUG("%s::nbBits error %u\r\n", __func__, nbBits);
 				return bMGR_AT_CMD_logFailedMsg(ERROR_PARAMETER_FORMAT);
