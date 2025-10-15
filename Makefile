@@ -39,12 +39,12 @@ COMM = UART
 
 # Select Kineis stack MAC profile. Can be:
 # * BASIC: basic profile, sending message once immediately 
-# * BLIND: blind profile, sending message sevral times periodically 
-MAC_PRFL = BASIC
+# * BLIND: blind profile, sending message several times periodically 
+MAC_PRFL = BLIND
 
-# LPM: depest low power mode supported can be:
+# LPM: deepest low power mode supported can be:
 # NONE, SLEEP, STOP, STANDBY, SHUTDOWN
-LPM = NONE
+LPM = SLEEP
 
 # * KRD board: choose between: KRD_FW_LP, KRD_FW_MP
 KRD_BOARD = KRD_FW_MP
@@ -228,22 +228,25 @@ C_DEFS +=  \
 endif
 
 ifeq ($(APP),STDLN)
-C_DEFS +=  \
--DUSE_STDALONE_APP
-ifeq ($(MAC_PRFL), BASIC)
-C_DEFS +=  \
--DUSE_MAC_PRFL_BASIC
-endif
-ifeq ($(MAC_PRFL), BLIND)
-C_DEFS +=  \
--DUSE_MAC_PRFL_BLIND
-endif
+	C_DEFS +=  \
+	-DUSE_STDALONE_APP
 endif
 
 ifeq ($(APP),GUI)
-C_DEFS +=  \
--DUSE_GUI_APP
+	C_DEFS +=  \
+	-DUSE_GUI_APP
 endif
+
+ifeq ($(MAC_PRFL), BASIC)
+	C_DEFS +=  \
+	-DUSE_MAC_PRFL_BASIC
+endif
+
+ifeq ($(MAC_PRFL), BLIND)
+	C_DEFS +=  \
+	-DUSE_MAC_PRFL_BLIND
+endif
+
 
 ifeq ($(COMM),UART)
 C_DEFS +=  \

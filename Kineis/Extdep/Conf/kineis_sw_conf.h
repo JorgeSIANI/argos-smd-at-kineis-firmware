@@ -29,7 +29,7 @@
 /* Defines ------------------------------------------------------------------------------------- */
 
 /**
- * @brief define include file concerninq assert used by Kineis stack
+ * @brief define include file concerning assert used by Kineis stack
  *
  * @attention DO NOT change this as long as you build with Kinés stack. Must keep it the same way
  * it was when generating the library (libkineis.a).
@@ -37,7 +37,7 @@
 #define KINEIS_SW_ASSERT_H	"kns_assert.h"
 
 /**
- * @brief define include file concerninq critical sections used by Kineis stack
+ * @brief define include file concerning critical sections used by Kineis stack
  *
  * @attention DO NOT change this as long as you build with Kinés stack. Must keep it the same way
  * it was when generating the library (libkineis.a).
