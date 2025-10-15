@@ -32,7 +32,7 @@
 /** @note The message counter be stored in a non volatile memory (flash, RTC backup reg, etc.).
  * Proposed implementation below is mapping the message_counter variable in a memory section:
  * * Ensure .msgCntSectionData section is mapped at the correct place
- * * or fill free to change this proposal as per you needs.
+ * * or fill free to change this proposal as per your needs.
  *
  * It could remain in RAM as long as the device is not POWER OFF and is not entering LPM.
  * The message counter value should be recovered after each device power off/on and low power wakeup

@@ -34,7 +34,7 @@
  * * 1 basic
  * * 2 blind
  *
- * 2) "AT+KMAC=?" returns the profil ID
+ * 2) "AT+KMAC=?" returns the profile ID
  *
  * @param[in] pu8_cmdParamString: string containing AT command
  * @param[in] e_exec_mode: type of the command (status command or action command)

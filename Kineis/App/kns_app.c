@@ -35,7 +35,7 @@
 /** Uncomment below depending on Kineis MAC protocol to be used by Kineis stack. */
 #if !defined(USE_MAC_PRFL_BASIC) && !defined(USE_MAC_PRFL_BLIND)
 //#define USE_MAC_PRFL_BASIC // immediate TX
-//#define USE_MAC_PRFL_BLIND // period TX for few repetitions
+#define USE_MAC_PRFL_BLIND // period TX for few repetitions
 #endif
 
 #if defined(USE_MAC_PRFL_BASIC) && defined(USE_MAC_PRFL_BLIND)
@@ -57,7 +57,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-//#ifdef USE_MAC_PRFL_BLIND
+#ifdef USE_MAC_PRFL_BLIND
 /**
  * @attention Configuration below shall be discussed with Kineis according to the SAT constellation
  * deployment
@@ -65,11 +65,11 @@
 struct KNS_MAC_BLIND_usrCfg_t prflBlindUserCfg = {
 	.retx_nb = 4,
 	.retx_period_s = 60,	/** Repetition period per message
-				 * @attention ensure retx_period_s =  60 * nb_parrallel_msg
+				 * @attention ensure retx_period_s =  60 * nb_parallel_msg
 				 */
 	.nb_parrallel_msg = 1	/** User-Message FIFO size @attention do not exceed 4*/
 };
-//#endif
+#endif
 
 /* Private functions ----------------------------------------------------------*/
 
@@ -158,7 +158,7 @@ static void KNS_APP_stdln_stopMacPrfl(void)
 void KNS_APP_stdln_loop(void)
 {
 	/** Static variables for state machine.
-	 * @note The implementation as a state machine is mainly usefull with kineis baremetal OS.
+	 * @note The implementation as a state machine is mainly useful with kineis baremetal OS.
 	 * The standalone application should be much more simple with a real OS
 	 */
 	static
@@ -354,8 +354,8 @@ void KNS_APP_stdln_loop(void)
 }
 void KNS_APP_gui_init(void *context)
 {
-//	enum KNS_status_t status;
-//	struct KNS_MAC_appEvt_t appEvt;
+	enum KNS_status_t status;
+	struct KNS_MAC_appEvt_t appEvt;
 
 	kns_assert(context != NULL); // context should contain pointer to UART handle
 
@@ -367,23 +367,24 @@ void KNS_APP_gui_init(void *context)
 	MGR_AT_CMD_start(context);
 #endif
 
-//	/** Initialize Kineis MAC profile */
-//	/** @todo PRODEV-97: move to AT+KMAC command */
-//	appEvt.id =  KNS_MAC_INIT;
-//#ifdef USE_MAC_PRFL_BASIC
-//	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BASIC;
-//#endif
-//#ifdef USE_MAC_PRFL_BLIND
-//	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BLIND;
-//	appEvt.init_prfl_ctxt.blindCfg = prflBlindUserCfg;
-//#endif
-//
-//	status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
-//	if (status != KNS_STATUS_OK) {
-//		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC protocol: Error code 0x%x\r\n", status);
-//		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build and/or config.\r\n");
-//		kns_assert(0);
-//	}
+	/** Initialize Kineis MAC profile */
+	/** @todo PRODEV-97: move to AT+KMAC command */
+	appEvt.id =  KNS_MAC_INIT;
+#ifdef USE_MAC_PRFL_BASIC
+	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BASIC;
+#endif
+#ifdef USE_MAC_PRFL_BLIND
+	appEvt.init_prfl_ctxt.id = KNS_MAC_PRFL_BLIND;
+	appEvt.init_prfl_ctxt.blindCfg = prflBlindUserCfg;
+#endif
+
+	status = KNS_Q_push(KNS_Q_DL_APP2MAC, (void *)&appEvt);
+	if (status != KNS_STATUS_OK) {
+		MGR_LOG_DEBUG("[ERROR] Cannot initialize MAC protocol: Error code 0x%x\r\n", status);
+		MGR_LOG_DEBUG("[ERROR] Check protocol capabilities of the build and/or config.\r\n");
+		kns_assert(0);
+	}
+
 }
 
 void KNS_APP_gui_loop(void)
