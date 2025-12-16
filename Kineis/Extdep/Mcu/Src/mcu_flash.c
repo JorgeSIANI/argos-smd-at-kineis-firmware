@@ -193,9 +193,12 @@ enum KNS_status_t MCU_FLASH_write(uint32_t address, const void *data, size_t siz
                 break;
             }
 
+			#ifdef DEBUG
             uint32_t err = HAL_FLASH_GetError();
             MGR_LOG_DEBUG("FLASH PROGRAM ERROR: addr=0x%08lx, err=0x%08lx (try %u)\r\n",
                           target_addr, err, (unsigned)(retry + 1));
+			#endif
+
 
             retry++;
         }
